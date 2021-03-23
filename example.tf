@@ -42,8 +42,13 @@ resource "aws_s3_bucket" "test_bucket" {
   }
 }
 
-resource "aws_instance" "test_instance" {
+resource "aws_instance" "test_instance_1" {
   ami           = "ami-830c94e3"
   instance_type = var.instance_type
   tags          = var.tags
 }
+
+resource "aws_instance" "test_instance_2" {
+  ami           = "ami-830c94e3"
+  instance_type = var.instance_type
+  tags          = var.tags
