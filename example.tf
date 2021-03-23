@@ -25,12 +25,14 @@ resource "aws_s3_bucket" "log_bucket" {
   bucket = "gov.lbl.go.my-log-bucket"
   acl    = "log-delivery-write"
   tags = var.tags
+  force_destroy = true
 }
 
 resource "aws_s3_bucket" "test_bucket" {
   bucket = "gov.lbl.go.my-test-bucket"
   acl    = "private"
   tags = var.tags
+  force_destroy = true
 
   versioning {
     enabled = false 
