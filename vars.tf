@@ -1,27 +1,15 @@
-variable aws_credentials_file {
-  type = string
-  default = "~/.aws/credentials"
-}
-
-variable "region" {
-  type = string
-  default = "us-west-2"
-}
-
 variable "account_name" {
   type = string
-  default = "test_noctua_billing"
+  default = "test_billing_from_terraform_cloud"
 }
 
 variable "emails" {
   description = "List of emails"
   type = list(string)
-  default = ["xxxx@gmail.com"]
 }
 
 variable "account_budget_limit" {
   type = string
-  default = "20.0"
 }
 
 variable "services" {
@@ -33,10 +21,10 @@ variable "services" {
 
   default = {
     EC2 = {
-      budget_limit = "10.0"
+      budget_limit = "500.0"
     },
     S3 = {
-      budget_limit = "5.0"
+      budget_limit = "100.0"
     }
   }
 }
