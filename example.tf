@@ -22,13 +22,13 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "log_bucket" {
-  bucket = "my-log-bucket"
+  bucket = "gov.lbl.go.my-log-bucket"
   acl    = "log-delivery-write"
   tags = var.tags
 }
 
 resource "aws_s3_bucket" "test_bucket" {
-  bucket = "my-test-bucket"
+  bucket = "gov.lbl.go.my-test-bucket"
   acl    = "private"
   tags = var.tags
 
