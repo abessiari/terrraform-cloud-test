@@ -7,6 +7,11 @@ terraform {
   }
 }
 
+variable "tags" {
+  type = map
+  default = { Name = "testing-terraform-cloud" }
+}
+
 variable "instance_type" {
   type = string
 }
@@ -16,7 +21,29 @@ provider "aws" {
   region  = "us-west-2"
 }
 
-resource "aws_instance" "example" {
+resource "aws_s3_bucket" "log_bucket" {
+  bucket = "my-log-bucket"
+  acl    = "log-delivery-write"
+  tags = var.tags
+}
+
+resource "aws_s3_bucket" "test_bucket" {
+  bucket = "my-test-bucket"
+  acl    = "private"
+  tags = var.tags
+
+  versioning {
+    enabled = false 
+  }
+
+  logging {
+    target_bucket = aws_s3_bucket.log_bucket.id
+    target_prefix = "log/"
+  }
+}
+
+resource "aws_instance" "test_instance" {
   ami           = "ami-830c94e3"
   instance_type = var.instance_type
+  tags          = var.tags
 }
