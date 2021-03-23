@@ -52,3 +52,4 @@ resource "aws_instance" "test_instance_2" {
   ami           = "ami-830c94e3"
   instance_type = var.instance_type
   tags          = var.tags
+}
